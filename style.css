@@ -1,0 +1,13 @@
+form{
+    width: 60%;
+}
+@media screen AND (max-width: 1000px) {
+    form{
+        width: 100%;
+    }
+}
+/* @media screen AND (max-width: 1000px) {
+    form{
+        width: 100%;
+    }
+} */
