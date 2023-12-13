@@ -89,28 +89,36 @@ class LigneTable extends React.Component {
   render() {
     return (
       <React.Fragment>
-        {this.props.table.map((ligne) => (
-          <tr key={ligne.id}>
-            <td>{ligne.prenom}</td>
-            <td>{ligne.nom}</td>
-            <td>{ligne.email}</td>
-            <td>{ligne.telephone}</td>
-            <td className="d-flex gap-2 d-flex align-items-center py-md-2 py-4">
-              <Boutons
-                btnColor="btn-warning"
-                // text="Modifier"
-                fa="fa-pen-to-square"
-                action={() => this.props.handleUpdate(ligne.id)}
-              />
-              <Boutons
-                btnColor="btn-danger"
-                // text="Supprimer"
-                fa="fa-trash-can"
-                action={() => this.props.handleDelete(ligne.id)}
-              />
+        {this.props.table.length === 0 ? (
+          <tr>
+            <td className="text-center text-danger" colspan="5">
+              Le tableau est vide
             </td>
           </tr>
-        ))}
+        ) : (
+          this.props.table.map((ligne) => (
+            <tr key={ligne.id}>
+              <td>{ligne.prenom}</td>
+              <td>{ligne.nom}</td>
+              <td>{ligne.email}</td>
+              <td>{ligne.telephone}</td>
+              <td className="d-flex gap-2 d-flex align-items-center py-md-2 py-4">
+                <Boutons
+                  btnColor="btn-warning"
+                  // text="Modifier"
+                  fa="fa-pen-to-square"
+                  action={() => this.props.handleUpdate(ligne.id)}
+                />
+                <Boutons
+                  btnColor="btn-danger"
+                  // text="Supprimer"
+                  fa="fa-trash-can"
+                  action={() => this.props.handleDelete(ligne.id)}
+                />
+              </td>
+            </tr>
+          ))
+        )}
       </React.Fragment>
     );
   }
@@ -124,8 +132,8 @@ class Tableau extends React.Component {
 
   render() {
     return (
-      <div className="p-3 border border-black border-start-0 border-top-0 border-end-0 border-1 border-opacity-25 m-auto overflow-x-scroll">
-        <table className="w-100 table table-striped ">
+      <div className="p-3  border-opacity-25 m-auto table-responsive-md">
+        <table className="w-100 table table-striped table-hover">
           <thead className="border">
             <tr className="border border-black border-start-0 border-top-0 border-end-0 border-1">
               <td className="fw-bold p-2 ">Prenom</td>
