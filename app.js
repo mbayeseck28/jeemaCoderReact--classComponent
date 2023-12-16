@@ -229,6 +229,20 @@ class App extends React.Component {
     }
   };
 
+  componentDidMount() {
+    let localStorageUsers = localStorage.getItem('listUsers');
+
+    if (localStorageUsers) {
+      localStorageUsers = JSON.parse(localStorageUsers);
+
+      this.setState({ listUsers: localStorageUsers });
+    }
+  }
+
+  componentDidUpdate() {
+    localStorage.setItem('listUsers', JSON.stringify(this.state.listUsers));
+  }
+
   // Modification de Tache
   handleUpdate = (cle) => {
     const newList = this.state.listUsers.filter((list) => list.id == cle);
